@@ -5,6 +5,14 @@ const Board = () => {
     return (
         <div className='board'>
             <IndSquare />
+            <IndSquare />
+            <IndSquare />
+            <IndSquare />
+            <IndSquare />
+            <IndSquare />
+            <IndSquare />
+            <IndSquare />
+            <IndSquare />
         </div>
     );
 }

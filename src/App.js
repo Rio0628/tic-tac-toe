@@ -15,7 +15,7 @@ function App() {
 
         <Board />
 
-        <p className='nextPlayerHdng'>Next Player: Player 1</p>
+        <p className='nextPlayerHdng'>Next Move: Player 1</p>
       </div>
 
       <div className='historyView'>
