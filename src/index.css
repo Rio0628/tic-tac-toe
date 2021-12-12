@@ -101,10 +101,6 @@ body {
   cursor: pointer;
 }
 
-/* <div className='gameEndOptions'>
-          <p className='replayBtn'>Replay</p>
-          <p className='mainMenuBtn'> */
-
 /* -- HISTORY VIEW STYLES -- */
 
 .historyView {
@@ -364,3 +360,38 @@ body {
   margin-bottom: 2.5rem;
 }
 
+@media screen and ( min-width: 500px ) {
+  .navBar, .gameEndOptions, .nextPlayerHdng {
+    width: 85%;
+    /* outline: 1px solid red; */
+  }
+
+  .nextPlayerHdng {
+    padding-left: 3rem;
+  }
+
+  .historyView {
+    width: 45%;
+    /* z-index: 3; */
+  }
+
+  .closeViewBtn { left: 15px; }
+
+  .historyViewHdng { right: 15px; }
+}
+
+@media screen and ( min-width: 700px ) {
+  .navBar, .gameEndOptions, .nextPlayerHdng {
+    width: 75%;
+    /* outline: 1px solid red; */
+  }
+
+  .historyView {
+    width: 35%;
+    z-index: 3;
+  }
+
+  /* .closeViewBtn { left: px; } */
+
+  /* .historyViewHdng { right: 15px; } */
+}
