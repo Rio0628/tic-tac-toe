@@ -13,6 +13,11 @@ function App() {
           <p className='historyTrigger'>History</p>
         </div>
 
+        <div className='gameEndOptions'>
+          <p className='replayBtn'>Replay</p>
+          <p className='mainMenuBtn'>Main Menu</p>
+        </div>
+
         <Board />
 
         <p className='nextPlayerHdng'>Next Move: Player 1</p>
@@ -20,6 +25,8 @@ function App() {
 
       <div className='previewView'>
         <div className='previewViewBtnsCntr'>
+          <p className='previewVieHeading'>Tic-Tac-Toe.</p>
+
           <div className='chooseBtnsCntr'>
             <p className='playerOne'>X</p>
             <p className='playerTwo'>O</p>

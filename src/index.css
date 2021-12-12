@@ -13,7 +13,6 @@ body {
   background: #1a181b;
 }
 
-
 /* -- MAIN GAME VIEW STYLES -- */
 
 .mainGameView {
@@ -54,12 +53,12 @@ body {
   /* outline: 1px solid white; */
 }
 
-.historyTrigger:hover {
+.historyTrigger:hover, .replayBtn:hover, .mainMenuBtn:hover {
   text-decoration: underline;
   transition: .1s linear;
 }
 
-.historyTrigger:active {
+.historyTrigger:active, .replayBtn:active, .mainMenuBtn:active {
   background: #edf2f4;
   color: #1a181b;
   transition: .1s linear;
@@ -71,6 +70,40 @@ body {
   /* outline: 1px solid red; */
 }
 
+/* -- GAME END OPTIONS STYLES -- */
+
+.gameEndOptions {
+  position: relative;
+  top: 20px;
+  width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  /* outline: 1px solid red; */
+}
+
+.replayBtn {
+  position: relative;
+  left: 10px;
+  /* top: 20px; */
+  font-weight: 600;
+  padding: 0px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mainMenuBtn {
+  position: relative;
+  right: 10px;
+  /* top: 20px; */
+  font-weight: 600;
+  padding: 0px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* <div className='gameEndOptions'>
+          <p className='replayBtn'>Replay</p>
+          <p className='mainMenuBtn'> */
 
 /* -- HISTORY VIEW STYLES -- */
 
@@ -232,14 +265,25 @@ body {
   align-items: center;
   padding: 0px 8px;
   outline: 1px solid #edf2f4;
+  box-shadow: 2px 2px 4px #edf2f4, -2px -2px 4px #edf2f4;
   border-radius: 3px;
+}
+
+.previewVieHeading {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 5px;
+  font-weight: 700;
+  /* outline: 1px solid red; */
 }
 
 .chooseBtnsCntr {
   width: 10rem;
-  height: 5rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   /* outline: 1px solid yellow; */
 }
 
@@ -320,16 +364,3 @@ body {
   margin-bottom: 2.5rem;
 }
 
-/* ='previewView'>
-        <div className='previewViewBtnsCntr'>
-          <div className='chooseBtnsCntr'>
-            <p className='playerOne'>X</p>
-            <p className='playerTwo'>O</p>
-          </div>
-
-          <div className='chooseGmdeCntr'>
-            <p className='twoPlayerGame'>Player Vs. Player</p>
-            <p className='singlaPlayerGame'>CPU Vs. Player</p>
-          </div>
-
-          <p className='startGameCntr'>Sta */
