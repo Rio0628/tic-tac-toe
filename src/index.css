@@ -106,8 +106,6 @@ body {
 .historyView {
   position: absolute;
   /* top: -200rem; */
-  right: 1px;
-  opacity: 1;
   width: 60%;
   height: 100%;
   background:#1a181b;
@@ -395,3 +393,33 @@ body {
 
   /* .historyViewHdng { right: 15px; } */
 }
+
+@media screen and ( min-width: 800px ) {
+  .mainGameView {
+    width: 70%;
+    z-index: 0;
+  }
+
+  .navBar {
+    justify-content: center;
+  }
+
+  .winnerHeading {
+    left: 20px;
+  }
+
+  .historyTrigger, .closeViewBtn {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .historyView {
+    width: 30%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .heading-btnCntr {
+    justify-content: center;
+  }
+}  

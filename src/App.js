@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="container">
 
-      {/* <div className='mainGameView'>
+      <div className='mainGameView'>
         <div className='navBar'>
           <p className='winnerHeading'>Winner: Player 1</p>
 
@@ -21,9 +21,9 @@ function App() {
         <Board />
 
         <p className='nextPlayerHdng'>Next Move: Player 1</p>
-      </div> */}
+      </div>
 
-      <div className='previewView'>
+      {/* <div className='previewView'>
         <div className='previewViewBtnsCntr'>
           <p className='previewVieHeading'>Tic-Tac-Toe.</p>
 
@@ -39,7 +39,7 @@ function App() {
 
           <p className='startGameBtn'>Start Game</p>
         </div>
-      </div>
+      </div>  */}
 
       <div className='historyView'>
         <div className='heading-btnCntr'>
@@ -51,7 +51,7 @@ function App() {
         <div className='indPastMovesCntr'>
           <p className='indPastMove'>Go to move #3</p>
         </div>
-      </div>
+      </div> 
 
     </div>
   );
