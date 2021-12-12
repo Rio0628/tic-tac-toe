@@ -106,6 +106,7 @@ body {
 .historyView {
   position: absolute;
   /* top: -200rem; */
+
   width: 60%;
   height: 100%;
   background:#1a181b;
@@ -116,7 +117,7 @@ body {
 
 .historyView.active {
   z-index: 3;
-  left: 0px;
+  right: 0px;
 }
 
 .heading-btnCntr {
