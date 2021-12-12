@@ -502,3 +502,86 @@ body {
     margin-bottom: 3rem;
   }
 }
+
+@media screen and ( min-width: 1500px ) {
+  
+  .mainGameView, .previewView {
+    width: 73%;
+  }
+
+  .historyView {
+    width: 27%;
+  }
+
+  .gameEndOptions, .nextPlayerHdng {
+    width: 60%;
+  }
+
+  .winnerHeading, .historyViewHdng {
+    font-size: 25px;
+    letter-spacing: 4px;
+  }
+
+  .nextPlayerHdng, .replayBtn, .mainMenuBtn, .indPastMove {
+    font-size: 22px;
+  }
+
+  .nextPlayerHdng {
+    position: relative;
+    bottom: 3rem;
+  }
+
+  .board {
+    position: relative;
+    top: 3rem;
+    width: 18.5rem;
+  }
+
+  .indSquare {
+    font-size: 3.5rem;
+    height: 6rem;
+    width: 6rem;
+  }
+
+  .previewViewBtnsCntr {
+    position: relative;
+    top: -1rem;
+    width: 26rem;
+  }
+
+  .previewVieHeading {
+    font-size: 42px;
+    letter-spacing: 10px;
+  }
+
+  .chooseBtnsCntr {
+    width: 14rem;
+  }
+
+  .playerOne, .playerTwo {
+    height: 75px;
+    width: 75px;
+    font-size: 50px;
+    line-height: 4.5rem;
+  }
+
+  .chooseGmdeCntr {
+    position: relative;
+    top: 1rem; 
+    /* width: 82%; */
+    /* outline: 1px solid red; */
+  }
+
+  .twoPlayerGame, .singlePlayerGame {
+    font-size: 21px;
+    /* padding: 3px 9px; */
+  }
+
+  .startGameBtn {
+    width: 91%;
+    font-size: 24px;
+    letter-spacing: 5px;
+    padding: 2px 3px;
+    margin-bottom: 3rem;
+  }
+}
