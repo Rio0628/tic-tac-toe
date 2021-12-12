@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="container">
 
-      <div className='mainGameView'>
+      {/* <div className='mainGameView'>
         <div className='navBar'>
           <p className='winnerHeading'>Winner: Player 1</p>
 
@@ -16,6 +16,22 @@ function App() {
         <Board />
 
         <p className='nextPlayerHdng'>Next Move: Player 1</p>
+      </div> */}
+
+      <div className='previewView'>
+        <div className='previewViewBtnsCntr'>
+          <div className='chooseBtnsCntr'>
+            <p className='playerOne'>X</p>
+            <p className='playerTwo'>O</p>
+          </div>
+
+          <div className='chooseGmdeCntr'>
+            <p className='twoPlayerGame'>Player Vs. Player</p>
+            <p className='singlePlayerGame'>CPU Vs. Player</p>
+          </div>
+
+          <p className='startGameBtn'>Start Game</p>
+        </div>
       </div>
 
       <div className='historyView'>

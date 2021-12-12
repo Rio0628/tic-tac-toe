@@ -207,5 +207,129 @@ body {
   transition: .1s linear;
 }
 
-/*     <div className='board'>
-        ='indSquare'> */
+/* -- PREVIEW STYLES -- */
+
+.previewView {
+  position: relative;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 2; 
+  background: #1a181b;
+  outline: 1px  solid red;
+}
+
+.previewViewBtnsCntr {
+  position: relative;
+  bottom: 5rem;
+  width: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 8px;
+  outline: 1px solid #edf2f4;
+  border-radius: 3px;
+}
+
+.chooseBtnsCntr {
+  width: 10rem;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  /* outline: 1px solid yellow; */
+}
+
+.playerOne, .playerTwo {
+  height: 50px;
+  width: 50px;
+  font-family: 'Bakbak One';
+  font-size: 30px;
+  text-align: center;
+  line-height: 3rem;
+  color: #edf2f4;
+  outline: 3px solid #edf2f4;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.playerOne:hover {
+  color: #c20114;
+  outline: 3px solid #c20114;
+  transition: .1s linear;
+}
+
+.playerTwo:hover {
+  color: #2e39dc;
+  outline: 3px solid #2e39dc;
+  transition: .1s linear;
+}
+
+.playerOne:active {
+  background: #c20114;
+  color: #edf2f4;
+  transition: .1s linear;
+}
+
+.playerTwo:active {
+  background: #2e39dc;
+  color: #edf2f4;
+  transition: .1s linear;
+}
+
+.chooseGmdeCntr {
+  display: flex;
+  width: 95%;
+  height: 5rem;
+  justify-content: space-between;
+  align-items: center;
+  /* outline: 1px solid green; */
+}
+
+.twoPlayerGame, .singlePlayerGame {
+  padding: 1px 5px;
+  outline: 1px solid #edf2f4;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.twoPlayerGame:hover, .singlePlayerGame:hover, .startGameBtn:hover {
+  background: rgba(65, 60, 68, 1);
+  transition: .1s linear;
+}
+
+.twoPlayerGame:active, .singlePlayerGame:active, .twoPlayerGame.active, .singlePlayerGame.active, .startGameBtn:active {
+  background: #edf2f4;
+  color: #1a181b;
+  outline: none; 
+  transition: .1s linear;
+}
+
+.startGameBtn {
+  width: 95%;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 3px;
+  outline: 1px solid #edf2f4;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 2.5rem;
+}
+
+/* ='previewView'>
+        <div className='previewViewBtnsCntr'>
+          <div className='chooseBtnsCntr'>
+            <p className='playerOne'>X</p>
+            <p className='playerTwo'>O</p>
+          </div>
+
+          <div className='chooseGmdeCntr'>
+            <p className='twoPlayerGame'>Player Vs. Player</p>
+            <p className='singlaPlayerGame'>CPU Vs. Player</p>
+          </div>
+
+          <p className='startGameCntr'>Sta */
