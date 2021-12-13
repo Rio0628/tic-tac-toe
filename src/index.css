@@ -171,6 +171,7 @@ body {
   letter-spacing: 2px;
   /* outline: 1px solid yellow; */
   cursor: pointer;
+  padding: 3px;
 }
 
 .indPastMove:hover {

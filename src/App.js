@@ -16,6 +16,13 @@ class App extends Component {
 
   render () {
 
+    const jumpTo = (step) => {
+      this.setState({
+        nmrOfMoves: step,
+        xIsNext: (step % 2) === 0
+      });
+    }
+
     const onClick = (e) => {
       console.log(e.target)
 
@@ -81,7 +88,10 @@ class App extends Component {
     }
     else status = `Next Player: ${this.state.xIsNext ? "X" : "O"} `;
 
-    console.log(this.state.gameStarted)
+    const moves = history.map((step, move) => {
+      const desc = move ? `Go to move #${move}` : `Go to game start`;
+      return ( <p className='indPastMove' onClick={() => jumpTo(move)} key={'past move ' + move}>{desc}</p> );
+    })
 
     return (
       <div className="container">
@@ -133,7 +143,7 @@ class App extends Component {
           </div>
   
           <div className='indPastMovesCntr'>
-            <p className='indPastMove'>Go to move #3</p>
+            {moves}
           </div>
         </div> 
   
