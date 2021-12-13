@@ -308,14 +308,16 @@ body {
   transition: .1s linear;
 }
 
-.playerOne:active {
+.playerOne:active, .playerOne.active {
   background: #c20114;
+  outline: 3px solid #c20114;
   color: #edf2f4;
   transition: .1s linear;
 }
 
-.playerTwo:active {
+.playerTwo:active, .playerTwo.active {
   background: #2e39dc;
+  outline: 3px solid #2e39dc;
   color: #edf2f4;
   transition: .1s linear;
 }

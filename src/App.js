@@ -38,21 +38,46 @@ class App extends Component {
       if (e.target.className === 'historyTrigger' || e.target.className === 'closeViewBtn') {
         this.setState({ historyViewTrggrd: !this.state.historyViewTrggrd });
       }
+
+      if (e.target.className === 'playerOne') {
+        this.setState({ userIsX: true });
+        this.setState({ userIsO: false });
+        this.setState({ xIsNext: true });
+      }
+
+      if (e.target.className === 'playerTwo') {
+        this.setState({ userIsO: true });
+        this.setState({ userIsX: false });
+        this.setState({ xIsNext: false });
+      }
+
+      if (e.target.className === 'twoPlayerGame') {
+        this.setState({ gamemode: 'multiplayer'});
+      }
+
+      if (e.target.className === 'singlePlayerGame') {
+        this.setState({ gamemode: 'singleplayer'});
+      }
     }
 
     const handleGameClick = (i) => {
-      const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
-      const currentMove = hist[hist.length - 1];
-      const squares = currentMove.squares.slice();
-
-      if ( calculateWinner(squares) || squares[i] ) return;
-
-      squares[i] = this.state.xIsNext ? 'X' : 'O';
-      this.setState({
-        history: hist.concat([{ squares: squares, }]),
-        nmrOfMoves: hist.length,
-        xIsNext: !this.state.xIsNext,
-      })
+      if (this.state.gamemode === 'multiplayer') {
+        const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
+        const currentMove = hist[hist.length - 1];
+        const squares = currentMove.squares.slice();
+  
+        if ( calculateWinner(squares) || squares[i] ) return;
+  
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+          history: hist.concat([{ squares: squares, }]),
+          nmrOfMoves: hist.length,
+          xIsNext: !this.state.xIsNext,
+        })
+      }
+      else if (this.state.gamemode === 'singleplayer') {
+        alert('This is the CPU Vs user gamemode ');
+      }
     }
 
     const calculateWinner = (squares) => {
@@ -93,6 +118,13 @@ class App extends Component {
       return ( <p className='indPastMove' onClick={() => jumpTo(move)} key={'past move ' + move}>{desc}</p> );
     })
 
+    const userPickedX = () => this.state.userIsX ? ' active' : '';
+    const userPickedO = () => this.state.userIsO ? ' active' : '';
+    const gamemodeIsOne = () => this.state.gamemode === 'singleplayer' ? ' active' : '';
+    const gamemodeIsMulti = () => this.state.gamemode === 'multiplayer' ? ' active' : '';
+
+    // console.log(Math.floor(Math.random() * 8) + 0)
+
     return (
       <div className="container">
         
@@ -120,13 +152,13 @@ class App extends Component {
               <p className='previewVieHeading'>Tic-Tac-Toe.</p>
 
               <div className='chooseBtnsCntr'>
-                <p className='playerOne' onClick={onClick}>X</p>
-                <p className='playerTwo' onClick={onClick}>O</p>
+                <p className={'playerOne' + userPickedX()} onClick={onClick}>X</p>
+                <p className={'playerTwo' + userPickedO()} onClick={onClick}>O</p>
               </div>
 
               <div className='chooseGmdeCntr'>
-                <p className='twoPlayerGame' onClick={onClick}>Player Vs. Player</p>
-                <p className='singlePlayerGame' onClick={onClick}>CPU Vs. Player</p>
+                <p className={'twoPlayerGame' + gamemodeIsMulti()} onClick={onClick}>Player Vs. Player</p>
+                <p className={'singlePlayerGame' + gamemodeIsOne()} onClick={onClick}>CPU Vs. Player</p>
               </div>
 
               <p className='startGameBtn' onClick={onClick}>Start Game</p>
@@ -143,7 +175,7 @@ class App extends Component {
           </div>
   
           <div className='indPastMovesCntr'>
-            {moves}
+            {this.state.gameStarted ? moves : ''}
           </div>
         </div> 
   
