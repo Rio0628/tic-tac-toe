@@ -7,6 +7,9 @@ class App extends Component {
     super(props);
     this.state = {
       gameStarted: false,
+      history: [{ squares: Array(9).fill(null) }],
+      nmrOfMoves: 0,
+      xIsNext: true, 
     };
   }
 
@@ -17,6 +20,7 @@ class App extends Component {
       console.log(e.target)
 
       if (e.target.className === 'startGameBtn') {
+        this.setState({ gameFinished: false });
         this.setState({ gameStarted: true });
       }
 
@@ -29,7 +33,53 @@ class App extends Component {
       }
     }
 
+    const handleGameClick = (i) => {
+      const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
+      const currentMove = hist[hist.length - 1];
+      const squares = currentMove.squares.slice();
+
+      if ( calculateWinner(squares) || squares[i] ) return;
+
+      squares[i] = this.state.xIsNext ? 'X' : 'O';
+      this.setState({
+        history: hist.concat([{ squares: squares, }]),
+        nmrOfMoves: hist.length,
+        xIsNext: !this.state.xIsNext,
+      })
+    }
+
+    const calculateWinner = (squares) => {
+      const winCombs = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+
+      for (let i = 0; i < winCombs.length; i++) {
+        const [a, b, c] = winCombs[i];
+        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) 
+        return squares[a];
+      }
+      return null;
+    }
+
     const checkIfHistoryTrggrd = () => this.state.historyViewTrggrd ? ' active' : '';
+
+    const history = this.state.history;
+    const current = history[this.state.nmrOfMoves];
+    const winner = calculateWinner(current.squares);
+    let status, gameFinished = false;
+
+    if (winner) {
+      gameFinished = true;
+      status = `Winner: ${winner}`
+    }
+    else status = `Next Player: ${this.state.xIsNext ? "X" : "O"} `;
 
     console.log(this.state.gameStarted)
 
@@ -39,19 +89,20 @@ class App extends Component {
         { this.state.gameStarted ? 
           <div className='mainGameView'>
             <div className='navBar'>
-              <p className='winnerHeading'>Winner: Player 1</p>
+              <p className='winnerHeading'>{status}</p>
   
               <p className='historyTrigger' onClick={onClick}>History</p>
             </div>
   
-            <div className='gameEndOptions'>
-              <p className='replayBtn' onClick={onClick}>Replay</p>
-              <p className='mainMenuBtn' onClick={onClick}>Main Menu</p>
-            </div>
+            { gameFinished ? 
+              <div className='gameEndOptions'>
+                <p className='replayBtn' onClick={onClick}>Replay</p>
+                <p className='mainMenuBtn' onClick={onClick}>Main Menu</p>
+              </div>
+            : null } 
+            
   
-            <Board />
-  
-            <p className='nextPlayerHdng'>Next Move: Player 1</p>
+            <Board squares={current.squares} onClick={(i) => handleGameClick(i)} />
           </div>
         : 
           <div className='previewView'>

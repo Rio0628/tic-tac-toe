@@ -1,9 +1,9 @@
 import React from 'react';
 
-const IndSquare = () => {
+const IndSquare = (props) => {
     return (
-        <div className='indSquare'>
-            <p>X</p>
+        <div className='indSquare' onClick={props.onClick}>
+            {props.value}
         </div>
     );
 }
