@@ -35,7 +35,21 @@ class App extends Component {
       }
 
       if (e.target.className === 'mainMenuBtn') {
-        this.setState({ gameStarted: false });
+        this.setState({ 
+          gameStarted: false,
+          userIsO: false,
+          userIsX: false,
+          gamemode: '',
+          gameTied: false,     
+        });
+      }
+
+      if (e.target.className === 'replayBtn') {
+        this.setState({ 
+          history: [{ squares: Array(9).fill(null) }],
+          nmrOfMoves: 0,
+          gameTied: false,
+        });
       }
 
       if (e.target.className === 'historyTrigger' || e.target.className === 'closeViewBtn') {
@@ -61,6 +75,8 @@ class App extends Component {
       if (e.target.className === 'singlePlayerGame') {
         this.setState({ gamemode: 'singleplayer'});
       }
+
+     
     }
 
     const handleGameClick = async (i) => {
@@ -84,33 +100,32 @@ class App extends Component {
         const squares = currentMove.squares.slice();
         const userOption = this.state.userIsX ? 'X' : this.state.userIsO ? 'O' : null;
         const cpuOption = userOption === 'X' ? "O" : userOption === 'O' ? 'X' : null;
+        let cpuMove = Math.floor(Math.random() * squares.length);
+       
+        const checkMove = () => {
+          try {
+            if (squares[cpuMove]) {
+              cpuMove = Math.floor(Math.random() * squares.length);
+              checkMove();
+            }
+            else {
+              squares[cpuMove] = cpuOption;
+              if (this.state.userIsO) { this.setState({ xIsNext: true }); }
+              if (this.state.userIsX) { this.setState({ xIsNext: false }); }
+            }
+          } catch {
+            squares[cpuMove] = userOption;
+            this.setState({ gameFinished: true });
+          }
+        }
 
-        // console.log(userOption)
-        // console.log(cpuOption)
-
-        if ( calculateWinner(squares) || squares[i] ) return;
+        if ( calculateWinner(squares) || squares[i] ) { return; }
+        else { checkMove(); };
 
         squares[i] = await userOption;
-
-        let cpuMove = Math.floor(Math.random() * squares.length);
-      
-        if (squares[cpuMove]) {
-          cpuMove = Math.floor(Math.random() * squares.length);
-          if (squares[cpuMove]) {
-            cpuMove = Math.floor(Math.random() * squares.length);
-          }
-          else {
-            squares[cpuMove] = cpuOption;
-            if (this.state.userIsO) { this.setState({ xIsNext: true }); }
-            if (this.state.userIsX) { this.setState({ xIsNext: false }); }
-          }
-        } else {
-          squares[cpuMove] = cpuOption
-          if (this.state.userIsO) { this.setState({ xIsNext: true }); }
-          if (this.state.userIsX) { this.setState({ xIsNext: false }); }
-        };
-        console.log(squares[cpuMove])
-        console.log(squares[i])
+    
+        // console.log(squares[cpuMove])
+        // console.log(squares[i])
 
         // do { cpuMove = Math.floor(Math.random() * 9) + 1; }
         // while ( squares[cpuMove - 1] );
@@ -157,6 +172,8 @@ class App extends Component {
     const winner = calculateWinner(current.squares);
     let status, gameFinished = false;
 
+    if (this.state.gameTied) { gameFinished = false; }
+
     if (winner) {
       gameFinished = true;
       status = `Winner: ${winner}`
@@ -184,7 +201,7 @@ class App extends Component {
         { this.state.gameStarted ? 
           <div className='mainGameView'>
             <div className='navBar'>
-              <p className='winnerHeading'>{status}</p>
+              <p className='winnerHeading'>{this.state.gameTied ? 'Winner: Tie!' : status}</p>
   
               <p className='historyTrigger' onClick={onClick}>History</p>
             </div>
