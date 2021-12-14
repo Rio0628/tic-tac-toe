@@ -28,7 +28,10 @@ class App extends Component {
 
       if (e.target.className === 'startGameBtn') {
         this.setState({ gameFinished: false });
-        this.setState({ gameStarted: true });
+        if (this.state.gamemode) {
+          this.setState({ gameStarted: true });
+        }
+        else alert('Select Gamemode To Start Game!');
       }
 
       if (e.target.className === 'mainMenuBtn') {
@@ -60,7 +63,7 @@ class App extends Component {
       }
     }
 
-    const handleGameClick = (i) => {
+    const handleGameClick = async (i) => {
       if (this.state.gamemode === 'multiplayer') {
         const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
         const currentMove = hist[hist.length - 1];
@@ -76,7 +79,54 @@ class App extends Component {
         })
       }
       else if (this.state.gamemode === 'singleplayer') {
-        alert('This is the CPU Vs user gamemode ');
+        const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
+        const currentMove = hist[hist.length - 1];
+        const squares = currentMove.squares.slice();
+        const userOption = this.state.userIsX ? 'X' : this.state.userIsO ? 'O' : null;
+        const cpuOption = userOption === 'X' ? "O" : userOption === 'O' ? 'X' : null;
+
+        // console.log(userOption)
+        // console.log(cpuOption)
+
+        if ( calculateWinner(squares) || squares[i] ) return;
+
+        squares[i] = await userOption;
+
+        let cpuMove = Math.floor(Math.random() * squares.length);
+      
+        if (squares[cpuMove]) {
+          cpuMove = Math.floor(Math.random() * squares.length);
+          if (squares[cpuMove]) {
+            cpuMove = Math.floor(Math.random() * squares.length);
+          }
+          else {
+            squares[cpuMove] = cpuOption;
+            if (this.state.userIsO) { this.setState({ xIsNext: true }); }
+            if (this.state.userIsX) { this.setState({ xIsNext: false }); }
+          }
+        } else {
+          squares[cpuMove] = cpuOption
+          if (this.state.userIsO) { this.setState({ xIsNext: true }); }
+          if (this.state.userIsX) { this.setState({ xIsNext: false }); }
+        };
+        console.log(squares[cpuMove])
+        console.log(squares[i])
+
+        // do { cpuMove = Math.floor(Math.random() * 9) + 1; }
+        // while ( squares[cpuMove - 1] );
+      
+        // if (squares[cpuMove - 1]) squares[cpuMove - 1] = userOption;
+        // else squares[cpuMove - 1] = cpuOption;
+
+        console.log(cpuMove - 1)
+        // squares[1] = 'X';
+
+        this.setState({
+          history: hist.concat([{ squares: squares, }]),
+          nmrOfMoves: hist.length,
+          xIsNext: !this.state.xIsNext,
+        })
+        
       }
     }
 
@@ -123,7 +173,10 @@ class App extends Component {
     const gamemodeIsOne = () => this.state.gamemode === 'singleplayer' ? ' active' : '';
     const gamemodeIsMulti = () => this.state.gamemode === 'multiplayer' ? ' active' : '';
 
-    // console.log(Math.floor(Math.random() * 8) + 0)
+    
+    // console.log(this.state.history)
+    // console.log(this.state.userIsX);
+    // console.log(this.state.userIsO);
 
     return (
       <div className="container">
