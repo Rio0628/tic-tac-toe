@@ -31,7 +31,6 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* outline: 1px solid green; */
 }
 
 .winnerHeading {
@@ -50,7 +49,6 @@ body {
   padding: 0px 5px;
   border-radius: 4px;
   cursor: pointer;
-  /* outline: 1px solid white; */
 }
 
 .historyTrigger:hover, .replayBtn:hover, .mainMenuBtn:hover {
@@ -67,7 +65,6 @@ body {
 .nextPlayerHdng {
   width: 100%;
   padding-left: 4rem;
-  /* outline: 1px solid red; */
 }
 
 /* -- GAME END OPTIONS STYLES -- */
@@ -78,13 +75,11 @@ body {
   width: 100%; 
   display: flex;
   justify-content: space-between;
-  /* outline: 1px solid red; */
 }
 
 .replayBtn {
   position: relative;
   left: 10px;
-  /* top: 20px; */
   font-weight: 600;
   padding: 0px 5px;
   border-radius: 4px;
@@ -94,7 +89,6 @@ body {
 .mainMenuBtn {
   position: relative;
   right: 10px;
-  /* top: 20px; */
   font-weight: 600;
   padding: 0px 5px;
   border-radius: 4px;
@@ -105,13 +99,10 @@ body {
 
 .historyView {
   position: absolute;
-  /* top: -200rem; */
-
   width: 60%;
   height: 100%;
   background:#1a181b;
   z-index: 0;
-  /* outline: 1px solid blue; */
   box-shadow: -1px 0px 2px #999;
 }
 
@@ -124,7 +115,6 @@ body {
   display: flex; 
   justify-content: space-between;
   align-items: center;
-  /* outline: 1px solid red; */
 }
 
 .closeViewBtn {
@@ -141,7 +131,7 @@ body {
 
 .closeViewBtn:active {
   color: #777;
-  transition: .1s lienar;
+  transition: .1s linear;
 }
 
 .icon { pointer-events: none; }
@@ -155,7 +145,6 @@ body {
 .indPastMovesCntr {
   position: relative;
   bottom: 15px;
-  /* outline: 1px solid magenta; */
   height: 90%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -169,7 +158,6 @@ body {
   font-weight: 600;
   text-align: center;
   letter-spacing: 2px;
-  /* outline: 1px solid yellow; */
   cursor: pointer;
   padding: 3px;
 }
@@ -189,13 +177,11 @@ body {
 .board {
   position: relative;
   top: 4rem;
-  /* height: 65%; */
   width: 15.5rem;
   display: grid;
   grid-template-columns: repeat( 3, 1fr );
   grid-template-rows: repeat(3, 1fr);
   margin-bottom: 8rem;
-  /* box-shadow: -1px -1px 0px #edf2f4; */
   outline: 1px solid #edf2f4;
 }
 
@@ -209,7 +195,6 @@ body {
   text-align: center;
   font-size: 3rem;
   padding: 1.5px;
-  /* line-height: 10px; */
   box-shadow:1px 1px 0px #edf2f4;
   cursor: pointer;
 }
@@ -241,14 +226,13 @@ body {
 .previewView {
   position: relative;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
   z-index: 2; 
   background: #1a181b;
-  outline: 1px  solid red;
+  /* outline: 1px  solid red; */
 }
 
 .previewViewBtnsCntr {
@@ -271,7 +255,6 @@ body {
   font-size: 30px;
   letter-spacing: 5px;
   font-weight: 700;
-  /* outline: 1px solid red; */
 }
 
 .chooseBtnsCntr {
@@ -280,7 +263,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* outline: 1px solid yellow; */
 }
 
 .playerOne, .playerTwo {
@@ -328,7 +310,6 @@ body {
   height: 5rem;
   justify-content: space-between;
   align-items: center;
-  /* outline: 1px solid green; */
 }
 
 .twoPlayerGame, .singlePlayerGame {
@@ -365,7 +346,6 @@ body {
 @media screen and ( min-width: 500px ) {
   .navBar, .gameEndOptions, .nextPlayerHdng {
     width: 85%;
-    /* outline: 1px solid red; */
   }
 
   .nextPlayerHdng {
@@ -374,7 +354,6 @@ body {
 
   .historyView {
     width: 45%;
-    /* z-index: 3; */
   }
 
   .closeViewBtn { left: 15px; }
@@ -385,7 +364,6 @@ body {
 @media screen and ( min-width: 700px ) {
   .navBar, .gameEndOptions, .nextPlayerHdng {
     width: 75%;
-    /* outline: 1px solid red; */
   }
 
   .historyView {
@@ -393,10 +371,6 @@ body {
     z-index: 1;
     right: 0px;
   }
-
-  /* .closeViewBtn { left: px; } */
-
-  /* .historyViewHdng { right: 15px; } */
 }
 
 @media screen and ( min-width: 800px ) {
@@ -496,7 +470,6 @@ body {
 
   .twoPlayerGame, .singlePlayerGame {
     font-size: 17px;
-    /* padding: 3px 9px; */
   }
 
   .startGameBtn {
@@ -573,13 +546,10 @@ body {
   .chooseGmdeCntr {
     position: relative;
     top: 1rem; 
-    /* width: 82%; */
-    /* outline: 1px solid red; */
   }
 
   .twoPlayerGame, .singlePlayerGame {
     font-size: 21px;
-    /* padding: 3px 9px; */
   }
 
   .startGameBtn {

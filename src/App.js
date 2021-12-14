@@ -17,6 +17,7 @@ class App extends Component {
   render () {
 
     const jumpTo = (step) => {
+      // Jump to a certain step within the current game 
       this.setState({
         nmrOfMoves: step,
         xIsNext: (step % 2) === 0
@@ -24,9 +25,10 @@ class App extends Component {
     }
 
     const onClick = (e) => {
-      console.log(e.target)
+      // Main onClick function
 
       if (e.target.className === 'startGameBtn') {
+        // Starts a game as long as there is a gamemode selected by the user
         this.setState({ gameFinished: false });
         if (this.state.gamemode) {
           this.setState({ gameStarted: true });
@@ -35,7 +37,10 @@ class App extends Component {
       }
 
       if (e.target.className === 'mainMenuBtn') {
+        // Resets all values and brings the user back to the preview view 
         this.setState({ 
+          history: [{ squares: Array(9).fill(null) }],
+          nmrOfMoves: 0,
           gameStarted: false,
           userIsO: false,
           userIsX: false,
@@ -45,6 +50,7 @@ class App extends Component {
       }
 
       if (e.target.className === 'replayBtn') {
+        // Resets the values of a game to allow the user to play once again 
         this.setState({ 
           history: [{ squares: Array(9).fill(null) }],
           nmrOfMoves: 0,
@@ -53,26 +59,31 @@ class App extends Component {
       }
 
       if (e.target.className === 'historyTrigger' || e.target.className === 'closeViewBtn') {
+        // Takes care of bringing and collapsing the history view in the smaller viewports 
         this.setState({ historyViewTrggrd: !this.state.historyViewTrggrd });
       }
 
       if (e.target.className === 'playerOne') {
+        // Selects player one and allows the user to start with "X"
         this.setState({ userIsX: true });
         this.setState({ userIsO: false });
         this.setState({ xIsNext: true });
       }
 
       if (e.target.className === 'playerTwo') {
+        // Selects player one and allows the user to start with "O"
         this.setState({ userIsO: true });
         this.setState({ userIsX: false });
         this.setState({ xIsNext: false });
       }
 
       if (e.target.className === 'twoPlayerGame') {
+        // Sets the gamemode value
         this.setState({ gamemode: 'multiplayer'});
       }
 
       if (e.target.className === 'singlePlayerGame') {
+        // Sets the gamemode value
         this.setState({ gamemode: 'singleplayer'});
       }
 
@@ -80,7 +91,9 @@ class App extends Component {
     }
 
     const handleGameClick = async (i) => {
+      // Main click function for the gameboard
       if (this.state.gamemode === 'multiplayer') {
+        // Allows two users to play the game and yields a winner
         const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
         const currentMove = hist[hist.length - 1];
         const squares = currentMove.squares.slice();
@@ -95,6 +108,7 @@ class App extends Component {
         })
       }
       else if (this.state.gamemode === 'singleplayer') {
+        // Allows the user to play the game against a simple CPU and yields a winner
         const hist = this.state.history.slice(0, this.state.nmrOfMoves + 1);
         const currentMove = hist[hist.length - 1];
         const squares = currentMove.squares.slice();
@@ -123,18 +137,6 @@ class App extends Component {
         else { checkMove(); };
 
         squares[i] = await userOption;
-    
-        // console.log(squares[cpuMove])
-        // console.log(squares[i])
-
-        // do { cpuMove = Math.floor(Math.random() * 9) + 1; }
-        // while ( squares[cpuMove - 1] );
-      
-        // if (squares[cpuMove - 1]) squares[cpuMove - 1] = userOption;
-        // else squares[cpuMove - 1] = cpuOption;
-
-        console.log(cpuMove - 1)
-        // squares[1] = 'X';
 
         this.setState({
           history: hist.concat([{ squares: squares, }]),
@@ -146,6 +148,7 @@ class App extends Component {
     }
 
     const calculateWinner = (squares) => {
+      // Calculates the winner if the values within squares have an existing combination. 
       const winCombs = [
         [0, 1, 2],
         [3, 4, 5],
@@ -165,15 +168,16 @@ class App extends Component {
       return null;
     }
 
-    const checkIfHistoryTrggrd = () => this.state.historyViewTrggrd ? ' active' : '';
+    const checkIfHistoryTrggrd = () => this.state.historyViewTrggrd ? ' active' : ''; // takes care of bringing the history view up (Smaller viewports)
 
+    // Main Variables
     const history = this.state.history;
     const current = history[this.state.nmrOfMoves];
     const winner = calculateWinner(current.squares);
     let status, gameFinished = false;
 
+    // Takes care of showing the result of the current game 
     if (this.state.gameTied) { gameFinished = false; }
-
     if (winner) {
       gameFinished = true;
       status = `Winner: ${winner}`
@@ -181,19 +185,16 @@ class App extends Component {
     else status = `Next Player: ${this.state.xIsNext ? "X" : "O"} `;
 
     const moves = history.map((step, move) => {
+      // Brings each move made by the users to view in the history view 
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return ( <p className='indPastMove' onClick={() => jumpTo(move)} key={'past move ' + move}>{desc}</p> );
     })
 
+    // Functions that take care of showing user input within the preview view
     const userPickedX = () => this.state.userIsX ? ' active' : '';
     const userPickedO = () => this.state.userIsO ? ' active' : '';
     const gamemodeIsOne = () => this.state.gamemode === 'singleplayer' ? ' active' : '';
     const gamemodeIsMulti = () => this.state.gamemode === 'multiplayer' ? ' active' : '';
-
-    
-    // console.log(this.state.history)
-    // console.log(this.state.userIsX);
-    // console.log(this.state.userIsO);
 
     return (
       <div className="container">

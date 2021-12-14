@@ -8,4 +8,4 @@ const IndSquare = (props) => {
     );
 }
 
-export default IndSquare;
+export default IndSquare;z
