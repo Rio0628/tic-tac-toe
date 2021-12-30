@@ -138,6 +138,12 @@ class App extends Component {
 
         squares[i] = await userOption;
 
+        const areAllSquaresFilled = (square) => square !== null;
+        console.log(squares.every(areAllSquaresFilled));
+        if (squares.every(areAllSquaresFilled) && !calculateWinner(squares)) {
+          this.setState({ gameTied: true });
+        }
+
         this.setState({
           history: hist.concat([{ squares: squares, }]),
           nmrOfMoves: hist.length,
@@ -177,7 +183,8 @@ class App extends Component {
     let status, gameFinished = false;
 
     // Takes care of showing the result of the current game 
-    if (this.state.gameTied) { gameFinished = false; }
+    if (this.state.gameTied) { gameFinished = true; }
+
     if (winner) {
       gameFinished = true;
       status = `Winner: ${winner}`
