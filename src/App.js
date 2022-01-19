@@ -101,6 +101,15 @@ class App extends Component {
         if ( calculateWinner(squares) || squares[i] ) return;
   
         squares[i] = this.state.xIsNext ? 'X' : 'O';
+
+        const areAllSquaresFilled = (square) => square !== null;
+        console.log(squares.every(areAllSquaresFilled));
+        if (squares.every(areAllSquaresFilled) && !calculateWinner(squares)) {
+          this.setState({ gameTied: true });
+        }
+
+        if (this.state.gameTied) { this.setState({ xIsNext: !this.state.xIsNext }); }
+
         this.setState({
           history: hist.concat([{ squares: squares, }]),
           nmrOfMoves: hist.length,
